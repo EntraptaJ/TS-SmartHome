@@ -5,6 +5,54 @@ declare module 'wyze-node' {
     password: string;
   }
 
+  interface CameraThumbnail {
+    thumbnails_url: string;
+
+    thumbnails_ts: number;
+  }
+
+  interface DeviceStatus {
+    p2p_id: string;
+
+    p2p_type: number;
+
+    ssid: string;
+
+    ip: string;
+
+    power_switch: number;
+
+    temperature: string;
+
+    humidity: string;
+
+    temp_humi_room_type: number;
+
+    comfort_standard_level: number;
+
+    is_temperature_humidity: number;
+
+    records_event_switch: number;
+
+    motion_alarm_switch: number;
+
+    audio_alarm_switch: number;
+
+    smoke_alarm_switch: number;
+
+    co_alarm_switch: number;
+
+    electricity: string;
+
+    battery_charging_status: string;
+
+    is_link_toy_car: number;
+
+    power_saving_mode_switch: number;
+
+    camera_thumbnails: CameraThumbnail;
+  }
+
   interface Device {
     mac: string;
 
@@ -54,54 +102,6 @@ declare module 'wyze-node' {
   }
 
   type DeviceState = 'on' | 'off';
-
-  interface CameraThumbnail {
-    thumbnails_url: string;
-
-    thumbnails_ts: number;
-  }
-
-  interface DeviceStatus {
-    p2p_id: string;
-
-    p2p_type: number;
-
-    ssid: string;
-
-    ip: string;
-
-    power_switch: number;
-
-    temperature: string;
-
-    humidity: string;
-
-    temp_humi_room_type: number;
-
-    comfort_standard_level: number;
-
-    is_temperature_humidity: number;
-
-    records_event_switch: number;
-
-    motion_alarm_switch: number;
-
-    audio_alarm_switch: number;
-
-    smoke_alarm_switch: number;
-
-    co_alarm_switch: number;
-
-    electricity: string;
-
-    battery_charging_status: string;
-
-    is_link_toy_car: number;
-
-    power_saving_mode_switch: number;
-
-    camera_thumbnails: CameraThumbnail;
-  }
 
   export default class WyzeNode {
     public constructor(auth: Auth);
