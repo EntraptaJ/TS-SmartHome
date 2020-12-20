@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // src/Modules/SmartThingsDevices/SmartThingsDevice.ts
 import { Field, ID, ObjectType } from 'type-graphql';
 import { SmartThingsDeviceComponent } from './SmartThingsDeviceComponents';
