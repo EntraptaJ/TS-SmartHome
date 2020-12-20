@@ -1,5 +1,5 @@
 // src/Modules/WzyeDevices/WyzeDeviceParams.ts
-import { Field, Int, ObjectType } from 'type-graphql';
+import { Field, ObjectType } from 'type-graphql';
 import type { DeviceStatus } from 'wyze-node';
 import { WyzeCameraThumbnailParams } from './WyzeCameraThumbnailParams';
 import { WyzeDevicePowerState } from './WyzeDevicePowerState';
