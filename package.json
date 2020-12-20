@@ -43,15 +43,21 @@
     "castv2-client": "^1.2.0",
     "castv2-player": "^2.1.0",
     "chromecast-api": "^0.3.4",
+    "class-validator": "^0.12.2",
+    "date-fns": "^2.16.1",
     "dotenv": "^8.2.0",
     "eufy-robovac": "^1.4.2",
     "fastify": "^3.9.2",
     "got": "^11.8.1",
+    "graphql": "^15.4.0",
     "hyperid": "^2.1.0",
+    "pg": "^8.5.1",
     "reflect-metadata": "^0.1.13",
     "terminal-image": "^1.2.1",
     "type-graphql": "^1.1.1",
     "typedi": "^0.8.0",
+    "typeorm": "^0.2.29",
+    "typeorm-typedi-extensions": "^0.2.3",
     "wyze-node": "^2.0.3"
   }
 }

@@ -24,5 +24,6 @@ export async function buildGQLSchema(
   return buildSchema({
     resolvers: resolvers as NonEmptyArray<Function>,
     container: ({ context }: ResolverData<Context>) => context.container,
+    dateScalarMode: 'isoDate',
   });
 }

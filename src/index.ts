@@ -3,6 +3,7 @@ import fastify from 'fastify';
 import hyperid from 'hyperid';
 import 'reflect-metadata';
 import { createApolloServer } from './Library/Apollo';
+import { connectDatabase } from './Library/Database';
 import { logger, LogMode } from './Library/Logger';
 
 if (process.env.NODE_ENV !== 'production') {
@@ -29,6 +30,12 @@ const webServer = fastify({
    */
   genReqId: () => hyperid().uuid,
 });
+
+logger.log(LogMode.INFO, 'Connecting to database');
+
+await connectDatabase();
+
+logger.log(LogMode.INFO, 'Database connected. Creating Apollo Server');
 
 const gqlServer = await createApolloServer();
 

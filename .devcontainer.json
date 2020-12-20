@@ -2,7 +2,7 @@
   "name": "TS-SmartHome Container",
   "dockerComposeFile": "./docker-compose.dev.yml",
   "service": "TSSmartHomeDev",
-  "runServices": ["TSSmartHomeDev", "Redis"],
+  "runServices": ["TSSmartHomeDev", "Redis", "Database"],
   "settings": {
     "editor.formatOnSave": true,
     "typescript.tsdk": "node_modules/typescript/lib"
