@@ -5,6 +5,11 @@ declare global {
 
       WYZE_PASSWORD: string;
 
+      /**
+       * SmartThings Token
+       */
+      ST_TOKEN: string;
+
       HOST: string;
 
       PORT: string;

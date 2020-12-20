@@ -2,13 +2,13 @@
 import { Query, Resolver } from 'type-graphql';
 import { Service } from 'typedi';
 import { wyze } from '../../Library/Wyze';
-import { Device } from './Device';
+import { WyzeDevice } from './WyzeDevice';
 
 @Service()
 @Resolver()
 export class DeviceResolver {
-  @Query(() => [Device])
-  public devices(): Promise<Device[]> {
+  @Query(() => [WyzeDevice])
+  public devices(): Promise<WyzeDevice[]> {
     return wyze.getDeviceList();
   }
 }

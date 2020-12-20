@@ -14,6 +14,10 @@ export interface Config {
    */
   bindPort: string;
 
+  smartthings: {
+    token: string;
+  };
+
   wyze: {
     /**
      * Wyze Account username
@@ -34,5 +38,9 @@ export const config: Config = {
   wyze: {
     username: process.env.WYZE_USERNAME,
     password: process.env.WYZE_PASSWORD,
+  },
+
+  smartthings: {
+    token: process.env.ST_TOKEN,
   },
 };

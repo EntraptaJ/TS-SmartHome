@@ -1,8 +1,8 @@
-// src/Modules/Devices/Device.ts
+// src/Modules/WyzeDevices/WyzeDevice.ts
 import { Field, ID, ObjectType } from 'type-graphql';
 
 @ObjectType()
-export class Device implements Partial<import('wyze-node').Device> {
+export class WyzeDevice implements Partial<import('wyze-node').Device> {
   @Field(() => ID)
   public readonly mac: string;
 
