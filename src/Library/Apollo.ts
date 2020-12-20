@@ -75,7 +75,5 @@ export async function createApolloTestClient(): Promise<ApolloServerTestClient> 
 
   const gqlServer = await createApolloServer();
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
   return createTestClient(gqlServer);
 }
