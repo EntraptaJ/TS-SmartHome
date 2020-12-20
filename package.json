@@ -37,6 +37,10 @@
   "dependencies": {
     "@bridgerakol/samsung-smart-api": "^2.8.1",
     "apollo-server-fastify": "^3.0.0-alpha.3",
+    "castv2": "^0.1.10",
+    "castv2-client": "^1.2.0",
+    "castv2-player": "^2.1.0",
+    "chromecast-api": "^0.3.4",
     "dotenv": "^8.2.0",
     "eufy-robovac": "^1.4.2",
     "fastify": "^3.9.2",

@@ -10,10 +10,12 @@ import { SmartThingsDevice, isDeviceArray } from './SmartThingsDevice';
 export class SmartThingsDeviceResolver {
   @Query(() => [SmartThingsDevice])
   public async smartThingsDevices(): Promise<SmartThingsDevice[]> {
-    const { data } = await smartthings.devices.getList();
+    const {
+      data: { items },
+    } = await smartthings.devices.getList();
 
-    if (isDeviceArray(data.items)) {
-      return data.items;
+    if (isDeviceArray(items)) {
+      return items;
     }
 
     throw new Error('Invalid SmartThings Response');

@@ -1,5 +1,6 @@
 // src/Modules/SmartThingsDevices/SmartThingsDevice.ts
 import { Field, ID, ObjectType } from 'type-graphql';
+import { SmartThingsDeviceComponent } from './SmartThingsDeviceComponents';
 
 @ObjectType()
 export class SmartThingsDevice {
@@ -35,6 +36,9 @@ export class SmartThingsDevice {
 
   @Field()
   public deviceNetworkType: string;
+
+  @Field(() => [SmartThingsDeviceComponent])
+  public components: SmartThingsDeviceComponent[];
 }
 
 export function isDeviceArray(
