@@ -19,6 +19,7 @@
     "@types/node": "^14.14.14",
     "@typescript-eslint/eslint-plugin": "^4.10.0",
     "@typescript-eslint/parser": "^4.10.0",
+    "apollo-server-testing": "^3.0.0-alpha.3",
     "eslint": "^7.15.0",
     "eslint-config-prettier": "^7.0.0",
     "eslint-config-standard": "^16.0.2",
@@ -32,5 +33,18 @@
     "typescript": "^4.2.0-dev.20201211"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server-fastify": "^3.0.0-alpha.3",
+    "dotenv": "^8.2.0",
+    "eufy-robovac": "^1.4.2",
+    "fastify": "^3.9.2",
+    "got": "^11.8.1",
+    "hyperid": "^2.1.0",
+    "reflect-metadata": "^0.1.13",
+    "terminal-image": "^1.2.1",
+    "type-graphql": "^1.1.1",
+    "typedi": "^0.8.0",
+    "wyze-node": "^2.0.3"
+  }
 }
