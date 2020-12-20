@@ -3,19 +3,30 @@ import fastify from 'fastify';
 import hyperid from 'hyperid';
 import 'reflect-metadata';
 import { createApolloServer } from './Library/Apollo';
-import { config } from './Library/Config';
 import { logger, LogMode } from './Library/Logger';
 
 if (process.env.NODE_ENV !== 'production') {
   const { config } = await import('dotenv');
 
+  /**
+   * Load .env file from disk
+   */
   config();
 }
+
+/**
+ * For some reason if I import in the top level it doesn't get affected by dotenv loading,
+ * even if I seperately dynamic import after if there is a top level import already it's locked with default values not affected by dotenv config
+ */
+const { config } = await import('./Library/Config');
 
 /**
  * Fastify Web Server
  */
 const webServer = fastify({
+  /**
+   * Unique UUIDs for each request for logging and tracking
+   */
   genReqId: () => hyperid().uuid,
 });
 
@@ -50,7 +61,4 @@ logger.log(LogMode.INFO, 'Listening on port 8080');
 //     logger.log(LogMode.ERROR, `Log camera to console has failed.`, err);
 //   });
 // }, 300000);
-
-logger.log(LogMode.INFO, `Starting TS-Core`);
-
 export {};

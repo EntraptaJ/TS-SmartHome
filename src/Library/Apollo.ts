@@ -40,14 +40,6 @@ export async function createApolloServer(): Promise<ApolloServer> {
               willSendResponse(): void {
                 // remember to dispose the scoped container to prevent memory leaks
                 Container.reset(requestContext.context.requestId);
-
-                // for developers curiosity purpose, here is the logging of current scoped container instances
-                // we can make multiple parallel requests to see in console how this works
-                const instancesIds = ((Container as any)
-                  .instances as ContainerInstance[]).map(
-                  (instance) => instance.id,
-                );
-                console.log('instances left in memory:', instancesIds);
               },
             };
           },
