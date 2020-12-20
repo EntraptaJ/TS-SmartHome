@@ -3,15 +3,16 @@ import { Arg, Mutation, Query, Resolver } from 'type-graphql';
 import { Service } from 'typedi';
 import { wyze } from '../../Library/Wyze';
 import { WyzeDevice } from './WyzeDevice';
+import { WyzeDeviceService } from './WyzeDeviceService';
 
 @Service()
 @Resolver()
 export class DeviceResolver {
+  public constructor(private readonly wyzeService: WyzeDeviceService) {}
+
   @Query(() => [WyzeDevice])
   public async wyzeDevices(): Promise<WyzeDevice[]> {
-    const wyzeDevices = await wyze.getDeviceList();
-
-    return wyzeDevices;
+    return this.wyzeService.getAllDevices();
   }
 
   @Query(() => WyzeDevice)
@@ -25,27 +26,13 @@ export class DeviceResolver {
   public async powerOnWyzeDevice(
     @Arg('deviceName', () => String) deviceName: string,
   ): Promise<boolean> {
-    const wyzeDevice = await wyze.getDeviceByName(deviceName);
-
-    try {
-      await wyze.turnOn(wyzeDevice);
-      return true;
-    } catch {
-      return false;
-    }
+    return this.wyzeService.powerOnDeviceByName(deviceName);
   }
 
   @Mutation(() => Boolean)
   public async powerOffWyzeDevice(
     @Arg('deviceName', () => String) deviceName: string,
   ): Promise<boolean> {
-    const wyzeDevice = await wyze.getDeviceByName(deviceName);
-
-    try {
-      await wyze.turnOff(wyzeDevice);
-      return true;
-    } catch {
-      return false;
-    }
+    return this.wyzeService.powerOffDeviceByName(deviceName);
   }
 }
