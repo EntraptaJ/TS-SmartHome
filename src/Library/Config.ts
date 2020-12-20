@@ -29,6 +29,18 @@ export interface Config {
      */
     password: string;
   };
+
+  /**
+   * Redis Job Que & Cache Settings
+   */
+  redis: {
+    /**
+     * Host of the redis server
+     *
+     * Default: `Redis`
+     */
+    host: string;
+  };
 }
 
 export const config: Config = {
@@ -42,5 +54,9 @@ export const config: Config = {
 
   smartthings: {
     token: process.env.ST_TOKEN,
+  },
+
+  redis: {
+    host: process.env.REDIS_HOST || 'Redis',
   },
 };

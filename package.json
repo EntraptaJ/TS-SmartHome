@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@k-foss/ts-esnode": "^1.7.0",
+    "@types/bull": "^3.14.4",
     "@types/node": "^14.14.14",
     "@typescript-eslint/eslint-plugin": "^4.10.0",
     "@typescript-eslint/parser": "^4.10.0",
@@ -37,6 +38,7 @@
   "dependencies": {
     "@bridgerakol/samsung-smart-api": "^2.8.1",
     "apollo-server-fastify": "^3.0.0-alpha.3",
+    "bull": "^3.20.0",
     "castv2": "^0.1.10",
     "castv2-client": "^1.2.0",
     "castv2-player": "^2.1.0",

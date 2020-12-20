@@ -1,10 +1,14 @@
 {
   "name": "TS-SmartHome Container",
-  "dockerFile": "./Dockerfile.dev",
+  "dockerComposeFile": "./docker-compose.dev.yml",
+  "service": "TSSmartHomeDev",
+  "runServices": ["TSSmartHomeDev", "Redis"],
   "settings": {
     "editor.formatOnSave": true,
     "typescript.tsdk": "node_modules/typescript/lib"
   },
+
+  
   "extensions": [
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
@@ -13,11 +17,7 @@
     "eamodio.gitlens"
   ],
   "remoteUser": "node",
-  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
   "workspaceFolder": "/workspace",
-  "mounts": [
-    "source=ts-smarthome-modules,target=/workspace/node_modules,type=volume"
-  ],
   "remoteEnv": {
     "SHELL": "/bin/bash"
   },
