@@ -2,6 +2,22 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "name": "nodemon",
+      "request": "launch",
+      "restart": true,
+      "args": ["run", "dev"],
+      "runtimeExecutable": "npm",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "pwa-node",
+      "env": {
+        "LOG_MODE": "DEBUG"
+      }
+    },
+    {
       "name": "Debug Application",
       "request": "launch",
       "type": "node",

@@ -1,6 +1,11 @@
 // src/Library/Config.ts
 export interface Config {
   /**
+   * Public name of application
+   */
+  appName: string;
+
+  /**
    * Database connection config
    */
   database: {
@@ -84,6 +89,8 @@ export interface Config {
 }
 
 export const config: Config = {
+  appName: 'TS-SmartHome',
+
   database: {
     hostname: process.env.DB_HOST || 'Database',
     port: parseInt(process.env.DB_PORT || '5432'),

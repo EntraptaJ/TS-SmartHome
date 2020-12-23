@@ -1,6 +1,7 @@
 // src/Modules/Pills/PillEventModel.ts
 import { Field, ID, ObjectType } from 'type-graphql';
 import {
+  BaseEntity,
   Column,
   Entity,
   JoinColumn,
@@ -12,7 +13,7 @@ import { Pill } from './PillModel';
 
 @ObjectType()
 @Entity()
-export class PillEvent {
+export class PillEvent extends BaseEntity {
   @Field(() => ID)
   @PrimaryGeneratedColumn('uuid')
   public readonly id: string;

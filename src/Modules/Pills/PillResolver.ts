@@ -1,5 +1,4 @@
 // src/Modules/Pills/PillResolver.ts
-import { addMinutes } from 'date-fns';
 import {
   Arg,
   FieldResolver,
@@ -18,6 +17,7 @@ import { PillEvent } from './PillEventModel';
 import { PillEventType } from './PillEventType';
 import { PillInput } from './PillInput';
 import { Pill } from './PillModel';
+import { PillService } from './PillService';
 
 @Service()
 @Resolver(Pill)
@@ -27,6 +27,7 @@ export class PillResolver {
     private readonly pillRepository: Repository<Pill>,
     @InjectRepository(PillEvent)
     private readonly pillEventRepository: Repository<PillEvent>,
+    private readonly pillService: PillService,
   ) {
     console.log('NumberAIResolver created!');
   }
@@ -74,6 +75,17 @@ export class PillResolver {
     await this.pillRepository.update(pill, input);
 
     return this.pillRepository.findOneOrFail(pillId);
+  }
+
+  @Mutation(() => [Pill])
+  public async deletePill(
+    @Arg('pillId', () => ID) pillId: string,
+  ): Promise<Pill[]> {
+    const pill = await this.pillService.findOne(pillId);
+
+    await this.pillRepository.remove(pill);
+
+    return this.pillService.find();
   }
 
   @Mutation(() => Pill)
@@ -133,23 +145,5 @@ export class PillResolver {
     return this.pillEventRepository.find({
       pillId: pill.id,
     });
-  }
-
-  @FieldResolver(() => Date, {
-    nullable: true,
-  })
-  public async earliestNextDose(@Root() pill: Pill): Promise<Date | undefined> {
-    const pillEvents = await this.pillEventRepository.find({
-      where: {
-        pillId: pill.id,
-      },
-      take: 1,
-    });
-
-    const latestPillEvent = pillEvents[0];
-
-    if (latestPillEvent) {
-      return addMinutes(latestPillEvent.date, pill.minimumInterval * 60);
-    }
   }
 }

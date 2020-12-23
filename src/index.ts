@@ -1,7 +1,9 @@
 // src/index.ts
 import fastify from 'fastify';
+import fastifyExpress from 'fastify-express';
 import hyperid from 'hyperid';
 import 'reflect-metadata';
+import { alexaExpressAdapter } from './Library/Alexa/Alexa';
 import { createApolloServer } from './Library/Apollo';
 import { connectDatabase } from './Library/Database';
 import { logger, LogMode } from './Library/Logger';
@@ -31,6 +33,8 @@ const webServer = fastify({
   genReqId: () => hyperid().uuid,
 });
 
+await webServer.register(fastifyExpress);
+
 logger.log(LogMode.INFO, 'Connecting to database');
 
 await connectDatabase();
@@ -40,6 +44,9 @@ logger.log(LogMode.INFO, 'Database connected. Creating Apollo Server');
 const gqlServer = await createApolloServer();
 
 await webServer.register(gqlServer.createHandler());
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+await webServer.use(['/'], alexaExpressAdapter.getRequestHandlers());
 
 logger.log(LogMode.INFO, 'API Server setup.');
 
