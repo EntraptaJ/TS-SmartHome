@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // src/Utils/isIntent.ts
 import { HandlerInput } from 'ask-sdk-core';
 import { logger, LogMode } from '../Library/Logger';
@@ -36,7 +37,7 @@ export function IsType(
   handlerInput: HandlerInput,
   ...types: string[]
 ): boolean {
-  logger.log(LogMode.DEBUG, `isType(`, handlerInput, `,`, types, `)`)
+  logger.log(LogMode.DEBUG, `isType(`, handlerInput, `,`, types, `)`);
 
   for (const type of types) {
     if (handlerInput.requestEnvelope.request.type === type) {
@@ -47,6 +48,7 @@ export function IsType(
   return false;
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function isError(error: any): error is Error {
   if ('name' in error) {
     return true;
