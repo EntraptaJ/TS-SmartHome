@@ -1,13 +1,13 @@
 // src/Modules/Pills/CanTakePillIntent.ts
-import { RequestHandler } from 'ask-sdk-core';
+import { CustomSkillRequestHandler } from 'ask-sdk-core/dist/dispatcher/request/handler/CustomSkillRequestHandler';
 import { isPast } from 'date-fns';
-import { HandlerInput } from '../../Library/Alexa/RequestInput';
-import { config } from '../../Library/Config';
-import { IsIntent } from '../../Utils/Helpers';
-import { IntentTypes } from '../../Utils/IntentTypes';
-import { getPillIdFromSlot } from './getPill';
+import { HandlerInput } from '../../../Library/Alexa/RequestInput';
+import { config } from '../../../Library/Config';
+import { IsIntent } from '../../../Utils/Helpers';
+import { IntentTypes } from '../../../Utils/IntentTypes';
+import { getPillIdFromSlot } from '../getPill';
 
-export const CanTakePillIntent: RequestHandler = {
+export const CanTakePillIntent: CustomSkillRequestHandler = {
   canHandle(handlerInput: HandlerInput) {
     return IsIntent(handlerInput, IntentTypes.CanTakePill);
   },

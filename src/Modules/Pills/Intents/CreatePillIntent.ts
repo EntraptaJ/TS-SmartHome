@@ -2,10 +2,10 @@
 import { HandlerInput, RequestHandler } from 'ask-sdk-core';
 import { Directive } from 'ask-sdk-model';
 import { Container } from 'typedi';
-import { logger, LogMode } from '../../Library/Logger';
-import { IsIntent } from '../../Utils/Helpers';
-import { IntentTypes } from '../../Utils/IntentTypes';
-import { PillService } from './PillService';
+import { logger, LogMode } from '../../../Library/Logger';
+import { IsIntent } from '../../../Utils/Helpers';
+import { IntentTypes } from '../../../Utils/IntentTypes';
+import { PillService } from '../PillService';
 
 export const CreatePillIntent: RequestHandler = {
   canHandle(handlerInput: HandlerInput) {

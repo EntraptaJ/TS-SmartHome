@@ -1,9 +1,9 @@
 // src/Modules/Pills/GetPillIntent.ts
 import { RequestHandler } from 'ask-sdk-core';
-import { HandlerInput } from '../../Library/Alexa/RequestInput';
-import { IsIntent } from '../../Utils/Helpers';
-import { IntentTypes } from '../../Utils/IntentTypes';
-import { getPillIdFromSlot } from './getPill';
+import { HandlerInput } from '../../../Library/Alexa/RequestInput';
+import { IsIntent } from '../../../Utils/Helpers';
+import { IntentTypes } from '../../../Utils/IntentTypes';
+import { getPillIdFromSlot } from '../getPill';
 
 export const GetPillIntent: RequestHandler = {
   canHandle(handlerInput: HandlerInput) {

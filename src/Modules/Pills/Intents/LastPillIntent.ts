@@ -1,12 +1,12 @@
 // src/Modules/Pills/LastPillIntent.ts
 import { RequestHandler } from 'ask-sdk-core';
 import { format, isToday } from 'date-fns';
-import { HandlerInput } from '../../Library/Alexa/RequestInput';
-import { config } from '../../Library/Config';
-import { IsIntent } from '../../Utils/Helpers';
-import { IntentTypes } from '../../Utils/IntentTypes';
-import { getPillIdFromSlot } from './getPill';
-import { PillEventType } from './PillEventType';
+import { HandlerInput } from '../../../Library/Alexa/RequestInput';
+import { config } from '../../../Library/Config';
+import { IsIntent } from '../../../Utils/Helpers';
+import { IntentTypes } from '../../../Utils/IntentTypes';
+import { getPillIdFromSlot } from '../getPill';
+import { PillEventType } from '../PillEventType';
 
 export const LastPillIntent: RequestHandler = {
   canHandle(handlerInput: HandlerInput) {

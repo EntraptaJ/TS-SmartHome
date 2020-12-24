@@ -2,12 +2,12 @@
 import { RequestHandler } from 'ask-sdk';
 import { parse } from 'date-fns';
 import { zonedTimeToUtc } from 'date-fns-tz';
-import { HandlerInput } from '../../Library/Alexa/RequestInput';
-import { config } from '../../Library/Config';
-import { logger, LogMode } from '../../Library/Logger';
-import { isError, IsIntent } from '../../Utils/Helpers';
-import { IntentTypes } from '../../Utils/IntentTypes';
-import { getPillIdFromSlot } from './getPill';
+import { HandlerInput } from '../../../Library/Alexa/RequestInput';
+import { config } from '../../../Library/Config';
+import { logger, LogMode } from '../../../Library/Logger';
+import { isError, IsIntent } from '../../../Utils/Helpers';
+import { IntentTypes } from '../../../Utils/IntentTypes';
+import { getPillIdFromSlot } from '../getPill';
 
 export const TakePillIntent: RequestHandler = {
   canHandle(handlerInput: HandlerInput) {

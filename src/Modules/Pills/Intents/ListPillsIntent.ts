@@ -1,9 +1,10 @@
 // src/Modules/Pills/ListPillsIntent.ts
 import { RequestHandler } from 'ask-sdk-core';
-import { HandlerInput } from '../../Library/Alexa/RequestInput';
-import { logger, LogMode } from '../../Library/Logger';
-import { IsIntent } from '../../Utils/Helpers';
-import { IntentTypes } from '../../Utils/IntentTypes';
+import { Directive } from 'ask-sdk-model';
+import { HandlerInput } from '../../../Library/Alexa/RequestInput';
+import { logger, LogMode } from '../../../Library/Logger';
+import { IsIntent } from '../../../Utils/Helpers';
+import { IntentTypes } from '../../../Utils/IntentTypes';
 
 export const ListPillsIntent: RequestHandler = {
   canHandle(handlerInput: HandlerInput) {
