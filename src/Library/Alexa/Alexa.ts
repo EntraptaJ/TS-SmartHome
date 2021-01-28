@@ -3,15 +3,9 @@ import { Skill, SkillBuilders, StandardSkillBuilder } from 'ask-sdk';
 import { CustomSkillRequestHandler } from 'ask-sdk-core/dist/dispatcher/request/handler/CustomSkillRequestHandler';
 import { ExpressAdapter } from 'ask-sdk-express-adapter';
 import { Container } from 'typedi';
-import { HelloWorldIntent } from '../../Modules/HelloWorld/HelloWorldIntent';
 import { PillService } from '../../Modules/Pills/PillService';
 import { findModuleFiles } from '../../Utils/moduleFileFinder';
 import { logger, LogMode } from '../Logger';
-import { FallbackIntent } from './Intents/FallbackIntent';
-import { HelpIntent } from './Intents/HelpIntent';
-import { LaunchIntent } from './Intents/LaunchIntent';
-import { SessionEndedIntent } from './Intents/SessionEndedIntent';
-import { StopIntent } from './Intents/StopIntent';
 
 type IntentModule = { [key: string]: CustomSkillRequestHandler };
 
@@ -35,15 +29,7 @@ interface AlexaResponse {
 export async function createSkillBuilder(): Promise<AlexaResponse> {
   const intents = await getIntents();
 
-  const skillBuilder = SkillBuilders.standard().addRequestHandlers(
-    LaunchIntent,
-    HelloWorldIntent,
-    HelpIntent,
-    StopIntent,
-    SessionEndedIntent,
-    FallbackIntent,
-    ...intents,
-  );
+  const skillBuilder = SkillBuilders.standard().addRequestHandlers(...intents);
 
   const skill = skillBuilder.create();
 

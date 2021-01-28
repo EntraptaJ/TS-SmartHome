@@ -16,7 +16,6 @@
     "visualstudioexptteam.vscodeintellicode",
     "eamodio.gitlens"
   ],
-  "remoteUser": "node",
   "workspaceFolder": "/workspace",
   "remoteEnv": {
     "SHELL": "/bin/bash"

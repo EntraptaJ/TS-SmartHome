@@ -32,12 +32,12 @@ export class PillResolver {
     console.log('NumberAIResolver created!');
   }
 
-  @Query(() => [Pill])
+  @Query(() => [Pill], { description: 'Return all pill entities for a user' })
   public pills(): Promise<Pill[]> {
     return this.pillRepository.find();
   }
 
-  @Mutation(() => [Date])
+  @Mutation(() => [Date], { description: 'Record a new pill event' })
   public async createPillLog(
     @Arg('pillId', () => ID) pillId: string,
     @Arg('eventType', () => PillEventType, {
@@ -54,7 +54,7 @@ export class PillResolver {
     return pillEvents.map(({ date }) => date);
   }
 
-  @Mutation(() => [Pill])
+  @Mutation(() => [Pill], { description: 'Create a new pill for a user' })
   public async createPill(
     @Arg('input', () => CreatePillInput) input: CreatePillInput,
   ): Promise<Pill[]> {
@@ -65,7 +65,9 @@ export class PillResolver {
     return this.pillRepository.find();
   }
 
-  @Mutation(() => Pill)
+  @Mutation(() => Pill, {
+    description: 'Update a users pill',
+  })
   public async updatePill(
     @Arg('pillId', () => ID) pillId: string,
     @Arg('input', () => PillInput) input: PillInput,
@@ -77,7 +79,9 @@ export class PillResolver {
     return this.pillRepository.findOneOrFail(pillId);
   }
 
-  @Mutation(() => [Pill])
+  @Mutation(() => [Pill], {
+    description: 'Delete a users pill',
+  })
   public async deletePill(
     @Arg('pillId', () => ID) pillId: string,
   ): Promise<Pill[]> {
@@ -88,7 +92,9 @@ export class PillResolver {
     return this.pillService.find();
   }
 
-  @Mutation(() => Pill)
+  @Mutation(() => Pill, {
+    description: 'Create a new pill event for a users pill',
+  })
   public async createPillEvent(
     @Arg('pillId', () => ID) pillId: string,
     @Arg('input', () => PillEventInput) input: PillEventInput,
@@ -118,7 +124,9 @@ export class PillResolver {
     return pill;
   }
 
-  @Mutation(() => Pill)
+  @Mutation(() => Pill, {
+    description: 'Register a taken pill event for a users pill',
+  })
   public async takePill(
     @Arg('pillId', () => ID) pillId: string,
     @Arg('date', () => Date, {

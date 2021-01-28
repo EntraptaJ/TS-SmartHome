@@ -8,7 +8,10 @@ import { SmartThingsDevice, isDeviceArray } from './SmartThingsDevice';
 @Service()
 @Resolver()
 export class SmartThingsDeviceResolver {
-  @Query(() => [SmartThingsDevice])
+  @Query(() => [SmartThingsDevice], {
+    description:
+      'Retrieve all Samsung SmartThings Devices on a users SmartThings account',
+  })
   public async smartThingsDevices(): Promise<SmartThingsDevice[]> {
     const {
       data: { items },

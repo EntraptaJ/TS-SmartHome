@@ -1,6 +1,6 @@
 // src/Modules/Extras/HelpIntent.ts
 import { HandlerInput, RequestHandler } from 'ask-sdk-core';
-import { config } from '../../Config';
+import { config } from '../../../Library/Config';
 import { IsIntent } from '../../../Utils/Helpers';
 import { IntentTypes } from '../../../Utils/IntentTypes';
 

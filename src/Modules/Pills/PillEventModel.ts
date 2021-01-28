@@ -29,7 +29,7 @@ export class PillEvent extends BaseEntity {
   })
   public type: PillEventType;
 
-  @ManyToOne(() => Pill)
+  @ManyToOne('Pill')
   @JoinColumn()
   public pill: Pill;
 

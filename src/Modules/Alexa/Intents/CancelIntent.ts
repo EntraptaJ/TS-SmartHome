@@ -1,7 +1,7 @@
 // src/Modules/Extras/CancelIntent.ts
 import { HandlerInput, RequestHandler } from 'ask-sdk-core';
-import { config } from '../../Config';
-import { logger, LogMode } from '../../Logger';
+import { config } from '../../../Library/Config';
+import { logger, LogMode } from '../../../Library/Logger';
 import { IsIntent } from '../../../Utils/Helpers';
 import { IntentTypes } from '../../../Utils/IntentTypes';
 

@@ -1,6 +1,6 @@
 {
   "watch": ["src"],
   "ext": "ts",
-  "ignore": ["src/**/*.test.ts"],
+  "ignore": ["src/**/*.test.ts", "src/bin/**"],
   "exec": "npm run start:debug"
 }

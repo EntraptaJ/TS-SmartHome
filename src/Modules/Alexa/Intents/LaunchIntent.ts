@@ -3,8 +3,8 @@ import { RequestHandler } from 'ask-sdk-core';
 import { Directive } from 'ask-sdk-model';
 import { IsType } from '../../../Utils/Helpers';
 import { RequestTypes } from '../../../Utils/RequestTypes';
-import { logger, LogMode } from '../../Logger';
-import { HandlerInput } from '../RequestInput';
+import { logger, LogMode } from '../../../Library/Logger';
+import { HandlerInput } from '../../../Library/Alexa/RequestInput';
 
 export const LaunchIntent: RequestHandler = {
   canHandle(handlerInput: HandlerInput) {

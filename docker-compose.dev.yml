@@ -3,9 +3,9 @@ version: '3.8'
 volumes:
   modules:
   databaseData:
-  cloudflaredData:
-    name: ts-smarthome-cfdata
-    external: true
+#  cloudflaredData:
+#    name: ts-smarthome-cfdata
+#    external: true
 
 networks:
   internalDB:
@@ -43,15 +43,15 @@ services:
     networks:
       - internalRedis
 
-  ArgoTunnel:
-    image: kristianfoss/programs-cloudflared:cloudflared-main-scratch
-    command:
-      [
-        'tunnel',
-        '--hostname=alexa1.kristianjones.dev',
-        '--url=http://TSSmartHomeDev:8080',
-      ]
-    volumes:
-      - cloudflaredData:/data/.cloudflared
-    networks:
-      - internalDB
+#  ArgoTunnel:
+#    image: kristianfoss/programs-cloudflared:cloudflared-main-scratch
+#    command:
+#      [
+#        'tunnel',
+#        '--hostname=alexa1.kristianjones.dev',
+#        '--url=http://TSSmartHomeDev:8080',
+#      ]
+#    volumes:
+#      - cloudflaredData:/data/.cloudflared
+#    networks:
+#      - internalDB

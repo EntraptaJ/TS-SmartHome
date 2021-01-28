@@ -1,6 +1,6 @@
 // src/Modules/Extras/SessionEndedIntent.ts
 import { RequestHandler, HandlerInput } from 'ask-sdk-core';
-import { config } from '../../Config';
+import { config } from '../../../Library/Config';
 import { IsType } from '../../../Utils/Helpers';
 import { RequestTypes } from '../../../Utils/RequestTypes';
 

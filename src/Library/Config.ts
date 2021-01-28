@@ -86,6 +86,10 @@ export interface Config {
      */
     host: string;
   };
+
+  power: {
+    auth: string;
+  };
 }
 
 export const config: Config = {
@@ -113,5 +117,9 @@ export const config: Config = {
 
   redis: {
     host: process.env.REDIS_HOST || 'Redis',
+  },
+
+  power: {
+    auth: process.env.POWER_AUTH,
   },
 };

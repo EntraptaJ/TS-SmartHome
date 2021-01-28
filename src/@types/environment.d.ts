@@ -17,6 +17,8 @@ declare global {
       LOG_MODE?: 'DEBUG' | 'INFO' | 'WARN' | 'ERROR';
 
       NODE_ENV: 'development' | 'production';
+
+      POWER_AUTH: string;
     }
   }
 }
