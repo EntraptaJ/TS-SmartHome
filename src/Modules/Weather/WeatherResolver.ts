@@ -6,7 +6,9 @@ import { Weather } from './WeatherModel';
 @Service()
 @Resolver()
 export class WeatherResolver {
-  @Query(() => [Weather])
+  @Query(() => [Weather], {
+    description: 'Retrieve all weather records',
+  })
   public weather(): Promise<Weather[]> {
     return Weather.find();
   }

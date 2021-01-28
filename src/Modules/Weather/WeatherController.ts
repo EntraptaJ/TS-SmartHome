@@ -4,6 +4,7 @@ import ecWeather, { CurrentConditionsEntry } from 'ec-weather';
 import { Queue, QueueScheduler, Worker } from 'bullmq';
 import { logger, LogMode } from '../../Library/Logger';
 import { Weather } from './WeatherModel';
+import { processTemperatureToCelsius } from '../Temperature/TemperatureUnits';
 
 enum EntryType {
   WARNING_WATCH = 'Warnings and Watches',
@@ -25,6 +26,8 @@ export class WeatherController {
       city: this.cityCode,
       lang: 'en',
     });
+
+    console.log('City Code: ', this.cityCode, city);
 
     let currentWeather: CurrentConditionsEntry | undefined;
 
@@ -74,8 +77,10 @@ export class WeatherController {
 
         const weatherResponse = await this.getCurrentWeather();
 
+        console.log('Current Weather: ', weatherResponse);
+
         const weather = Weather.create({
-          temperature: weatherResponse.temperature,
+          temperature: processTemperatureToCelsius(weatherResponse.temperature),
           date: new Date(weatherResponse.published),
         });
         await weather.save();

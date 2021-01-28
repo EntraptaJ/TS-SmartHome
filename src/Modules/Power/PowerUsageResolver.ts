@@ -2,6 +2,7 @@
 import { format, isBefore, startOfDay, subDays } from 'date-fns';
 import { Arg, ID, Int, Mutation, Query, Resolver } from 'type-graphql';
 import { Service } from 'typedi';
+import { logger, LogMode } from '../../Library/Logger';
 import { PowerUsageController } from './PowerUsageController';
 import { PowerUsage } from './PowerUsageModel';
 
@@ -12,7 +13,7 @@ export class PowerUsageResovler {
 
   @Query(() => [PowerUsage])
   public async powerUsage(): Promise<PowerUsage[]> {
-    console.log('Hello');
+    logger.log(LogMode.DEBUG, 'Running powerUsage');
 
     const powerUsages = await PowerUsage.find({});
 

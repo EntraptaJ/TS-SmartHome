@@ -142,6 +142,12 @@ if (process.env.NODE_ENV !== 'production') {
   logger.log(LogMode.DEBUG, `Loaded .env file`);
 }
 
+const { ConfigController } = await import('./Modules/Config/ConfigController');
+
+const configController = Container.get(ConfigController);
+
+await configController.loadConfig();
+
 /**
  * For some reason if I import in the top level it doesn't get affected by dotenv loading,
  * even if I seperately dynamic import after if there is a top level import already it's locked with default values not affected by dotenv config

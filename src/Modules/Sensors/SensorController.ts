@@ -6,6 +6,7 @@ import { Sensor } from './SensorModel';
 import { logger, LogMode } from '../../Library/Logger';
 import { smartthings } from '../../Library/SmartThings';
 import { SensorTemperature } from './SensorTemperatureModel';
+import { processTemperatureToCelsius } from '../Temperature/TemperatureUnits';
 
 const sensorCollectorKey = 'sensorCollector';
 
@@ -78,7 +79,9 @@ export class SensorController {
               date: new Date(
                 sensorData.temperatureMeasurement.temperature.timestamp,
               ),
-              temperature: `${sensorData.temperatureMeasurement.temperature.value}${sensorData.temperatureMeasurement.temperature.unit}`,
+              temperature: processTemperatureToCelsius(
+                `${sensorData.temperatureMeasurement.temperature.value}${sensorData.temperatureMeasurement.temperature.unit}`,
+              ),
               sensorId,
             });
 

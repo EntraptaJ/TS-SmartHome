@@ -9,7 +9,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { PillEventType } from './PillEventType';
-import { Pill } from './PillModel';
+import type { Pill } from './PillModel';
 
 @ObjectType()
 @Entity()

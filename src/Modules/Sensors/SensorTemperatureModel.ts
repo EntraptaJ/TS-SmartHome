@@ -20,8 +20,6 @@ export class SensorTemperature extends BaseEntity {
   public sensorId: string;
 
   @Field()
-  @Column('varchar', {
-    default: '4.5C',
-  })
-  public temperature: string;
+  @Column('float')
+  public temperature: number;
 }

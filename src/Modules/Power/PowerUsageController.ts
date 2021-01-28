@@ -1,11 +1,11 @@
 // src/Modules/Power/PowerUsageController.ts
 import { Queue, QueueScheduler, Worker } from 'bullmq';
-import { format, subDays } from 'date-fns';
+import { format, startOfDay, subDays } from 'date-fns';
 import { parse } from 'fast-xml-parser';
 import got from 'got/dist/source';
-import { Service } from 'typedi';
-import { config } from '../../Library/Config';
+import { Inject, Service } from 'typedi';
 import { logger, LogMode } from '../../Library/Logger';
+import { Config, configToken } from '../Config/ConfigSchema';
 import { DayUsageParsedXML } from './DayUsageResponse';
 import { PowerUsage } from './PowerUsageModel';
 
@@ -17,6 +17,9 @@ const powerCollectorQueKey = 'PowerCollector';
 
 @Service()
 export class PowerUsageController {
+  @Inject(configToken)
+  public config: Config;
+
   private isDayUsageResponse(xml: DayUsageParsedXML): xml is DayUsageParsedXML {
     if ('chart' in xml) {
       return true;
@@ -62,7 +65,7 @@ export class PowerUsageController {
     serviceDate: string,
   ): Promise<DayUsageParsedXML> {
     const response = await got.get(
-      `https://tbslh.myutility.net/portal/prod/usage/index.weather.php?m=hod&sdp=23698152&ds=${serviceDate}&auth=${config.power.auth}&cachetime=42a407e364cf59ab3436f66655bb4168&pele=0`,
+      `https://tbslh.myutility.net/portal/prod/usage/index.weather.php?m=hod&sdp=23698152&ds=${serviceDate}&auth=${this.config.power.token}&cachetime=42a407e364cf59ab3436f66655bb4168&pele=0`,
     );
 
     const parsedXML = parse(response.body, { ignoreAttributes: false });
@@ -124,7 +127,7 @@ export class PowerUsageController {
       async () => {
         logger.log(LogMode.INFO, 'Running Task');
 
-        const date = subDays(new Date(), 2);
+        const date = subDays(startOfDay(new Date()), 1);
 
         const powerUsage = await this.getHourlyPowerUsage(
           format(date, 'M/d/y'),
