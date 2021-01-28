@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/KristianFJones/TS-SmartHome/compare/v1.1.0...v1.2.0) (2021-01-28)
+
+
+### Features
+
+* **Weather, Sensors:** Add scheduled checks for Sensors, and store weather data ([b37d8cb](https://github.com/KristianFJones/TS-SmartHome/commit/b37d8cb308ea37c4f56c05973b2e236eeb96ec99))
+
 # [1.1.0](https://github.com/KristianFJones/TS-SmartHome/compare/v1.0.0...v1.1.0) (2021-01-28)
 
 
