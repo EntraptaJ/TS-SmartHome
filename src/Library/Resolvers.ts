@@ -10,7 +10,7 @@ type ResolverModule = { [key: string]: Function };
 
 export async function getResolvers(): Promise<Function[]> {
   const resolverModules = await findModuleFiles<ResolverModule>(
-    /.*Resolver\.ts/,
+    /.*Resolver\.(ts|js)/,
   );
 
   return resolverModules.flatMap((resolverModule) =>
