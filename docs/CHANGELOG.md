@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/KristianFJones/TS-SmartHome/compare/v1.0.0...v1.1.0) (2021-01-28)
+
+
+### Features
+
+* Load js files too ([ef9a867](https://github.com/KristianFJones/TS-SmartHome/commit/ef9a867100874decef98d1698f6dd743d1bd97f3))
+
 # 1.0.0 (2021-01-28)
 
 
