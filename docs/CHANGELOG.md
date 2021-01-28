@@ -1,3 +1,15 @@
+# [1.3.0](https://github.com/KristianFJones/TS-SmartHome/compare/v1.2.0...v1.3.0) (2021-01-28)
+
+
+### Bug Fixes
+
+* Fix build ([789bb3b](https://github.com/KristianFJones/TS-SmartHome/commit/789bb3b4c093733eef977e03ef0d3b064311d765))
+
+
+### Features
+
+* **Config, YAML, Temperatures:** Add better temp handling, config, and yaml schemas ([a33e1b1](https://github.com/KristianFJones/TS-SmartHome/commit/a33e1b160ac8dcd77f26cbf885c38f0ff1f811c7))
+
 # [1.2.0](https://github.com/KristianFJones/TS-SmartHome/compare/v1.1.0...v1.2.0) (2021-01-28)
 
 
