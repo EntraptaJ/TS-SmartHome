@@ -184,18 +184,27 @@ await webServer.register(gqlServer.createHandler());
 
 logger.log(LogMode.DEBUG, `Starting weather checking que`);
 
-const [{ PowerUsageController }, { WeatherController }] = await Promise.all([
+const [
+  { PowerUsageController },
+  { WeatherController },
+  { SensorController },
+] = await Promise.all([
   import('./Modules/Power/PowerUsageController'),
   import('./Modules/Weather/WeatherController'),
+  import('./Modules/Sensors/SensorController'),
 ]);
 
-const weatherController = Container.get(WeatherController);
+const weatherController = new WeatherController('on-135');
 
 await weatherController.startCheckerQue();
 
 const powerUsageCollector = Container.get(PowerUsageController);
 
 await powerUsageCollector.startPowerUsageCollector();
+
+const sensorController = Container.get(SensorController);
+
+await sensorController.startSensorCollector();
 
 /*
 const gqlServer = await createApolloServer();

@@ -3,6 +3,7 @@
 import ecWeather, { CurrentConditionsEntry } from 'ec-weather';
 import { Queue, QueueScheduler, Worker } from 'bullmq';
 import { logger, LogMode } from '../../Library/Logger';
+import { Weather } from './WeatherModel';
 
 enum EntryType {
   WARNING_WATCH = 'Warnings and Watches',
@@ -52,8 +53,11 @@ export class WeatherController {
         host: process.env.REDIS_HOST || 'Redis',
       },
     });
-
-    console.log('Que Scheduler has been created: ', CheckerQueScheduler.name);
+    logger.log(
+      LogMode.DEBUG,
+      'Que Scheduler has been created: ',
+      CheckerQueScheduler.name,
+    );
 
     const CheckerQue = new Queue(weatherQueKey, {
       connection: {
@@ -66,12 +70,17 @@ export class WeatherController {
     const schedulerWorker = new Worker(
       weatherQueKey,
       async () => {
-        logger.log(LogMode.DEBUG, `Checking weather`);
+        logger.log(LogMode.INFO, `Checking weather`);
 
-        const weather = await this.getCurrentWeather();
+        const weatherResponse = await this.getCurrentWeather();
+
+        const weather = Weather.create({
+          temperature: weatherResponse.temperature,
+          date: new Date(weatherResponse.published),
+        });
+        await weather.save();
 
         logger.log(LogMode.DEBUG, `Weather`, weather.temperature);
-        console.log('Created Weather Scheduler');
       },
       {
         connection: {
@@ -79,6 +88,8 @@ export class WeatherController {
         },
       },
     );
+
+    await CheckerQue.clean(0, 100);
     logger.log(
       LogMode.DEBUG,
       `weatherController schedulerWorker`,
@@ -89,7 +100,7 @@ export class WeatherController {
       weatherQueKey,
       {},
       {
-        jobId: 'weather',
+        jobId: 'weatherCheck',
         repeat: {
           cron,
         },
