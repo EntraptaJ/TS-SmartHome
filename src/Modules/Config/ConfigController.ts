@@ -6,7 +6,7 @@ import { readFile, writeFile } from 'fs/promises';
 import Container, { Service } from 'typedi';
 import { Config, configToken } from './ConfigSchema';
 import { load } from 'js-yaml';
-import { resolve } from 'path';
+import { isAbsolute, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import { logger, LogMode } from '../../Library/Logger';
 
@@ -45,6 +45,38 @@ export class ConfigController {
     return configSchema;
   }
 
+  public async processObject<
+    T extends Record<string, string | Record<string, string>>
+  >(obj: T): Promise<T> {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const proccesedObj: T = {};
+
+    for (const key in obj) {
+      const value = obj[key];
+
+      if (typeof value === 'string') {
+        if (isAbsolute(value)) {
+          console.log('Need to parse secret: ', value);
+
+          const secretFile = await readFile(value);
+
+          proccesedObj[key] = secretFile.toString() as typeof obj[typeof key];
+        } else {
+          proccesedObj[key] = value;
+        }
+      }
+
+      if (typeof obj[key] === 'object') {
+        proccesedObj[key] = (await this.processObject(
+          value as Record<string, string>,
+        )) as typeof obj[typeof key];
+      }
+    }
+
+    return (proccesedObj as unknown) as T;
+  }
+
   public async saveSchema(): Promise<void> {
     const schema = await this.createSchema();
 
@@ -70,7 +102,12 @@ export class ConfigController {
       Container.set({
         global: true,
         id: configToken,
-        value: configYAML,
+        value: await this.processObject(
+          (configYAML as unknown) as Record<
+            string,
+            string | Record<string, string>
+          >,
+        ),
       });
 
       return Container.get(configToken);
