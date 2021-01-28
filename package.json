@@ -53,7 +53,7 @@
     "date-fns-tz": "^1.0.12",
     "dotenv": "^8.2.0",
     "ec-weather": "^1.0.4",
-    "eufy-robovac": "^1.4.2",
+    "eufy-robovac": "^1.4.3",
     "fast-xml-parser": "^3.17.6",
     "fastify": "^3.10.1",
     "fastify-express": "^0.3.2",
