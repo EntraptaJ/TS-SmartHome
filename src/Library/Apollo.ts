@@ -1,11 +1,11 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 // src/@types/Apollo.ts
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 // src/Library/Apollo.ts
-import { GraphQLRequestContext } from 'apollo-server-plugin-base';
 import { Container } from 'typedi';
-import { Context, getGQLContext } from './Context';
+import { getGQLContext } from './Context';
 
 type ApolloServer = import('apollo-server-fastify').ApolloServer;
 type ApolloServerTestClient = import('apollo-server-testing').ApolloServerTestClient;
@@ -35,17 +35,9 @@ export async function createApolloServer(): Promise<ApolloServer> {
       plugins: [
         {
           requestDidStart: () => ({
-            willSendResponse(requestContext: GraphQLRequestContext<Context>) {
+            willSendResponse(requestContext) {
               // remember to dispose the scoped container to prevent memory leaks
               Container.reset(requestContext.context.requestId);
-
-              // for developers curiosity purpose, here is the logging of current scoped container instances
-              // we can make multiple parallel requests to see in console how this works
-              const instancesIds = ((Container as any)
-                .instances as ContainerInstance[]).map(
-                (instance) => instance.id,
-              );
-              console.log('instances left in memory:', instancesIds);
             },
           }),
         },

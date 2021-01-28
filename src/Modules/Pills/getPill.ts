@@ -1,4 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 // src/Modules/Pills/getPills.ts
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import { Slot } from 'ask-sdk-model';
 
 export const getStaticAndDynamicSlotValuesFromSlot = function (
