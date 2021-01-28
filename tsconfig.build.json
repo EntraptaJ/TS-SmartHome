@@ -5,13 +5,10 @@
     "moduleResolution": "Node",
     "allowSyntheticDefaultImports": true,
     // Strict Rules
-    "strict": true,
-    "alwaysStrict": true,
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
-    "strictPropertyInitialization": false,
-    // Source Maps
-    "inlineSourceMap": true,
+        // Source Maps
+    "inlineSourceMap": false,
+    "isolatedModules": false,
+    "traceResolution": true,
     // Features
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
